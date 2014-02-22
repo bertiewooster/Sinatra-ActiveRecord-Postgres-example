@@ -1,7 +1,8 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 
-db = URI.parse('postgres://jemonat@localhost/jemonat')
+#db = URI.parse('postgres://jemonat@localhost/jemonat')
+db = URI.parse('postgres://jemonat@localhost/elements')
 
 ActiveRecord::Base.establish_connection(
   :adapter  => db.scheme == 'postgres' ? 'postgresql' : db.scheme,
@@ -12,15 +13,19 @@ ActiveRecord::Base.establish_connection(
   :encoding => 'utf8'
 )
 
-class Note < ActiveRecord::Base
+#class Note < ActiveRecord::Base
+class Element < ActiveRecord::Base
 end
 
 get "/" do
-  @notes = Note.order("created_at DESC")
-  redirect "/new" if @notes.empty?
+  #@notes = Note.order("created_at DESC")
+  #redirect "/new" if @notes.empty?
+  @element = Element.find(2)
+  @elements = Element.order("atomic_num ASC")
   erb :index
 end
 
+=begin
 get "/new" do
   erb :new
 end
@@ -38,3 +43,4 @@ get "/note/:id" do |id|
   @note = Note.find_by_id(id)
   erb :note
 end
+=end

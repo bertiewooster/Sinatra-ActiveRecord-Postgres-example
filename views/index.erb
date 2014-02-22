@@ -1,10 +1,21 @@
-<h1>Notes</h1>
+<h1>Element</h1>
 <ul>
-<% @notes.each do |note| %>
+<%# @element.each do |element| %>
   <li>
-    <h2><a href="/note/<%= note.id %>"><%= note.title %></a></h2>
-    <p><%= note.body %></p>
+    <h2><a href="/element/<%= @element.atomic_num %>"><%= @element.name %></a></h2>
+    <p><%= @element.symbol %></p>
+    <p><%= @element.atomic_weight %></p>
+  </li>
+<%# end %>
+</ul>
+
+<h1>Elements</h1>
+<ul>
+<% @elements.each do |element| %>
+  <li>
+    <h2><a href="/element/<%= element.atomic_num %>"><%= element.name %></a></h2>
+    <p><%= element.symbol %></p>
+    <p><%= element.atomic_weight %></p>
   </li>
 <% end %>
 </ul>
-<a href="/new">New note</a>
